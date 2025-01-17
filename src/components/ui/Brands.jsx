@@ -10,7 +10,7 @@ import prada from "../../assets/prada-logo-1 1.png";
 
 const Brands = () => {
   return (
-    <section className="bg-black w-full h-auto py-5">
+    <section className="bg-black w-full h-auto py-5 px-4 md:px-10 lg:px-20">
       <Splide
         options={{
           perPage: 5,
@@ -25,7 +25,7 @@ const Brands = () => {
           pauseOnHover: true,
           resetProgress: false,
           speed: 100000,
-          interval: 1000, 
+          interval: 1000,
           pagination: false,
           arrows: false,
         }}
