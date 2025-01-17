@@ -9,24 +9,26 @@ const TopHeader = () => {
     closeRef.current.style.display = "none";
   };
   return (
-    <p
+    <div
       ref={closeRef}
-      className="px-6 bg-[#222] flex items-center gap-2 justify-center text-[#e7e4e4] text-xs py-1"
+      className="bg-black text-white text-center relative py-1  w-full "
     >
-      Sign up and get 20% off your first order.
-      <a
-        href="#"
-        className="font-semibold underline underline-offset-2 text-white"
-      >
-        Sign up now
-      </a>
+      <div className="w-full flex items-center justify-center gap-3">
+        <p className="text-center">Sign up and get 20% off your first order.</p>
+        <a
+          href="#"
+          className="font-semibold underline underline-offset-2 text-white"
+        >
+          Sign up now
+        </a>
+      </div>
       <button
         onClick={handleClick}
-        className="hidden md:inline-block text-white"
+        className="hidden md:inline-block text-white  absolute top-1/2 right-32 transfrom -translate-y-[50%]"
       >
         <IoMdClose />
       </button>
-    </p>
+    </div>
   );
 };
 
