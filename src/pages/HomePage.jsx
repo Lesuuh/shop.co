@@ -5,6 +5,7 @@ import TopSelling from "../components/ui/TopSelling";
 import MainLayout from "../layouts/MainLayout";
 
 const HomePage = () => {
+
   return (
     <MainLayout>
       <Hero />
