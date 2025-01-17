@@ -1,4 +1,5 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
+import "@splidejs/react-splide/css";
 
 // importing the images
 import versace from "../../assets/versace-logo.png";
@@ -9,29 +10,43 @@ import prada from "../../assets/prada-logo-1 1.png";
 
 const Brands = () => {
   return (
-    <>
-      <Swiper spaceBetween={50} slidesPerView={3}>
-        <SwiperSlide>
-          <img src={versace} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={zara} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={calvin_klein} alt="" />
-        </SwiperSlide>
-      </Swiper>
-      ;
-      <Swiper spaceBetween={50}>
-        <SwiperSlide>
-          <img src={gucci} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={prada} alt="" />
-        </SwiperSlide>
-      </Swiper>
-      ;
-    </>
+    <section className="bg-black w-full h-auto py-5">
+      <Splide
+        options={{
+          perPage: 5,
+          breakpoints: {
+            640: {
+              perPage: 3,
+            },
+          },
+          gap: "1rem",
+          type: "loop",
+          autoplay: true,
+          pauseOnHover: true,
+          resetProgress: false,
+          speed: 100000,
+          interval: 1000, 
+          pagination: false,
+          arrows: false,
+        }}
+      >
+        <SplideSlide>
+          <img src={versace} alt="" size={50} className="h-5 w-auto" />
+        </SplideSlide>
+        <SplideSlide>
+          <img src={zara} alt="" size={50} className="h-5 w-auto" />
+        </SplideSlide>
+        <SplideSlide>
+          <img src={calvin_klein} alt="" size={50} className="h-5 w-auto" />
+        </SplideSlide>
+        <SplideSlide>
+          <img src={gucci} alt="" size={50} className="h-5 w-auto" />
+        </SplideSlide>
+        <SplideSlide>
+          <img src={prada} alt="" size={50} className="h-5 w-auto" />
+        </SplideSlide>
+      </Splide>
+    </section>
   );
 };
 

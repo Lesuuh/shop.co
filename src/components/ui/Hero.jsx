@@ -17,9 +17,13 @@ const Hero = () => {
         <Button text="Shop now" />
       </div>
 
-      <div className=" px-4 mt-10 flex justify-center items-center flex-col">
-        <p className="font-semibold text-xl leading-3">30,000+</p>
-        <small className="text-xs font-extralight ">Happy Customers</small>
+      <div className=" px-4 mt-10 flex items-center flex-col">
+        <p className="font-semibold text-xl leading-3 text-center flex-1">
+          30,000+
+        </p>
+        <small className="text-xs font-extralight text-center flex-1">
+          Happy Customers
+        </small>
       </div>
 
       <div className="relative">
