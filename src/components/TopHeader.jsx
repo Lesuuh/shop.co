@@ -13,11 +13,11 @@ const TopHeader = () => {
       ref={closeRef}
       className="bg-black text-white text-center relative py-1  w-full "
     >
-      <div className="w-full flex items-center justify-center gap-3">
-        <p className="text-center">Sign up and get 20% off your first order.</p>
+      <div className="w-full flex flex-wrap items-center justify-center gap-3 py-1">
+        <p className="text-center text-xs text-[#eee]">Sign up and get 20% off your first order.</p>
         <a
           href="#"
-          className="font-semibold underline underline-offset-2 text-white"
+          className="font-semibold underline underline-offset-2 text-white text-xs"
         >
           Sign up now
         </a>
