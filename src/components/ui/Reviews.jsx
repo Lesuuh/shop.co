@@ -1,25 +1,26 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import { useRef } from "react";
-import { FaStar } from "react-icons/fa";
+
 import {
   IoIosArrowRoundBack,
   IoIosArrowRoundForward,
   IoIosCheckmarkCircleOutline,
 } from "react-icons/io";
+import StarRatings from "../StarRatings";
 
 const reviews = [
   {
     id: 1,
     name: "Sarah M.",
-    starRatings: 4,
+    starRatings: 5,
     reviews:
       "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus.",
   },
   {
     id: 2,
     name: "Mary J.",
-    starRatings: 4,
+    starRatings: 3.5,
     reviews:
       "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus.",
   },
@@ -33,14 +34,14 @@ const reviews = [
   {
     id: 4,
     name: "Lesuuh UK.",
-    starRatings: 4,
+    starRatings: 2.5,
     reviews:
       "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus.",
   },
   {
     id: 5,
     name: "John D.",
-    starRatings: 4,
+    starRatings: 4.5,
     reviews:
       "Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit, amet consectetur adipisicing elit. Doloribus.",
   },
@@ -98,10 +99,7 @@ const Reviews = () => {
             <SplideSlide key={item.id}>
               <div className="h-auto space-y-3 border p-3 rounded-lg">
                 <div className="flex items-center">
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
+                  <StarRatings ratings={item.starRatings} />
                 </div>
                 <div className="flex items-center">
                   <h3 className="font-semibold">{item.name}</h3>
