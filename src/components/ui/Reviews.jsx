@@ -108,7 +108,7 @@ const Reviews = () => {
                     className="text-green-500 ml-2"
                   />
                 </div>
-                <p>{`"${item.reviews}"`}</p>
+                <p className="font-light text-xs leading-4">{`"${item.reviews}"`}</p>
               </div>
             </SplideSlide>
           ))}

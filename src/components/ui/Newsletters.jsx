@@ -9,8 +9,8 @@ const Newsletters = () => {
   };
 
   return (
-    <section className="w-full px-4 md:px-10 lg:px-20 text-white rou">
-      <div className="bg-black p-4 md:px-10 sm:flex justify-between items-center rounded-lg space-y-2">
+    <section className="w-full px-4 md:px-10 lg:px-20 text-white rounded-lg md:-mb-20 ">
+      <div className="bg-black p-4 md:px-10 sm:flex justify-between items-center rounded-lg space-y-2 z-100">
         <h2 className="text-3xl font-black">
           STAY UP TO DATE ABOUT OUR LATEST UPDATES
         </h2>
