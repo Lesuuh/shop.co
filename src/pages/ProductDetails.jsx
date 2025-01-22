@@ -85,21 +85,29 @@ const ProductDetails = () => {
             <div className="flex items-center">
               <div
                 onClick={() => handleColor("black")}
-                className="w-8 h-8 bg-black rounded-full"
+                className="w-8 h-8 bg-black rounded-full flex items-center justify-center"
               >
-                <GoCheck />
+                {selection.color === "black" ? (
+                  <GoCheck
+                    className={`${
+                      selection.color === "black" ? "text-white" : ""
+                    }`}
+                  />
+                ) : (
+                  ""
+                )}
               </div>
               <div
                 onClick={() => handleColor("gray")}
-                className="w-8 h-8 bg-gray-500 rounded-full ml-2"
+                className="w-8 h-8 bg-gray-500 rounded-full ml-2 flex items-center justify-center"
               >
-                <GoCheck />
+                {selection.color === "gray" ? <GoCheck /> : ""}
               </div>
               <div
                 onClick={() => handleColor("red")}
-                className="w-8 h-8 bg-red-500 rounded-full ml-2"
+                className="w-8 h-8 bg-red-500 rounded-full ml-2 flex items-center justify-center"
               >
-                <GoCheck />
+                {selection.color === "red" ? <GoCheck /> : ""}
               </div>
             </div>
           </div>
@@ -145,6 +153,35 @@ const ProductDetails = () => {
             <button className="flex-1 ml-2 bg-black text-white text-xs rounded-2xl py-2 font-light">
               Add to Cart
             </button>
+          </div>
+        </div>
+        <div className="my-5">
+          <h4 className="text-sm border-b border-black/10 pb-2">
+            Ratings & Reviews
+          </h4>
+          <h3 className="font-semibold mt-2">
+            All Reviews <span className="font-light text-xs">(451)</span>
+          </h3>
+
+          <div>
+            <div className="border rounded-xl p-4 my-2">
+              <div className="flex items-center space-x-2 my-2">
+                <FaStar className="text-yellow-400" />
+                <FaStar className="text-yellow-400" />
+                <FaStar className="text-yellow-400" />
+                <FaStar className="text-yellow-400" />
+              </div>
+              <h5 className="font-semibold">Samantha D.</h5>
+              <p className="text-xs font-light text-gray-500 mt-2">
+                &quot;The t-shirt exceeded my expectations! The colors are
+                vibrant and the print quality is top-notch. Being a UI/UX
+                designer myself, I&apos;m quite picky about aesthetics, and this
+                t-shirt definitely gets a thumbs up from me.&quot;
+              </p>
+              <p className="text-xs font-light text-gray-500 mt-2">
+                Posted on August 15, 2023
+              </p>
+            </div>
           </div>
         </div>
       </section>
