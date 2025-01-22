@@ -1,5 +1,5 @@
-import { FaFacebook } from "react-icons/fa";
-import { FaCcVisa } from "react-icons/fa6";
+import { FaFacebook, FaTwitter, FaInstagram, FaGithub } from "react-icons/fa";
+import { FaCcVisa, FaCcPaypal } from "react-icons/fa6";
 import Newsletters from "./Newsletters";
 
 const Footer = () => {
@@ -16,22 +16,22 @@ const Footer = () => {
                 wear. From women to men
               </p>
             </div>
-            <div className="flex space-x-5">
-              <span>
-                <FaFacebook />
+            <div className="flex space-x-5 items-center my-5">
+              <span className="w-8 h-8 border rounded-full border-black/30 flex items-center justify-center group hover:bg-black transition ease-in-out duration-500 cursor-pointer">
+                <FaTwitter className="group-hover:text-white" />
               </span>
-              <span>
-                <FaFacebook />
+              <span className="w-8 h-8 border rounded-full border-black/30 flex items-center justify-center group hover:bg-black transition ease-in-out duration-500 cursor-pointer">
+                <FaInstagram className="group-hover:text-white" />
               </span>
-              <span>
-                <FaFacebook />
+              <span className="w-8 h-8 border rounded-full border-black/30 flex items-center justify-center group hover:bg-black transition ease-in-out duration-500 cursor-pointer">
+                <FaFacebook className="group-hover:text-white" />
               </span>
-              <span>
-                <FaFacebook />
+              <span className="w-8 h-8 border rounded-full border-black/30 flex items-center justify-center group hover:bg-black transition ease-in-out duration-500 cursor-pointer">
+                <FaGithub className="group-hover:text-white" />
               </span>
             </div>
           </div>
-          <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-5 border-b border-[#2828281a] pb-10">
+          <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-5  pb-10">
             <div>
               <h4 className="font-normal text-sm">COMPANY</h4>
               <ul className="space-y-2 pt-2">
@@ -84,16 +84,16 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col text-center justify-center item-center md:flex-row md:justify-between ">
-          <p className="text-xs text-center font-light text-[#333]">
+        <div className="flex flex-col mb-5 text-center justify-center item-center md:flex-row md:justify-between border-t border-[#2828281a]">
+          <p className="text-xs my-3 text-center font-light text-[#333]">
             Shop.co 2000-2025. All Rights Reserved
           </p>
-          <div className="flex items-center gap-5">
-            <FaCcVisa />
-            <FaCcVisa />
-            <FaCcVisa />
-            <FaCcVisa />
-            <FaCcVisa />
+          <div className="flex items-center justify-center gap-5">
+            <FaCcVisa size={30}/>
+            <FaCcPaypal size={30}/>
+            <FaCcVisa size={30}/>
+            <FaCcPaypal size={30}/>
+            <FaCcVisa size={30}/>
           </div>
         </div>
       </div>
