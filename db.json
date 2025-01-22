@@ -1,0 +1,34 @@
+{
+  "product": [
+    {
+      "id": 1,
+      "title": "Gym T-shirt",
+      "discount": 20,
+      "price": {
+        "old": 20,
+        "new": 15
+      },
+      "rating": 4.5,
+      "description": "High quality Gym t-shirt",
+      "category": "gym",
+      "type": "t-shirt",
+      "images": ["images1", "images2", "images3"],
+      "sizes": ["S", "M", "L", "XL"],
+      "color": "blue",
+      "reviews": [
+        {
+          "user": "John Doe",
+          "rating": 4.5,
+          "comment": "Amazing Quality"
+        },
+        {
+          "user": "Jane Smith",
+          "rating": 3,
+          "comment": "Amazing Quality but poor finish"
+        }
+      ],
+      "isFeatured": true,
+      "isNew": true
+    }
+  ]
+}
