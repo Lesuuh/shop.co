@@ -9,7 +9,7 @@ function App() {
     <Routes>
       <Route index element={<HomePage />} />
       <Route path="/products" element={<Products />} />
-      <Route path="/productdetails/:id" element={<ProductDetails />} />
+      <Route path="/productdetails" element={<ProductDetails />} />
       <Route path="/category" />
       <Route path="/cart" element={<Cart />} />
     </Routes>
