@@ -1,5 +1,5 @@
 import ProductCard from "./ProductCard";
-import db from "../../../db";
+import db from "../../../database";
 
 const newArrivals = db;
 

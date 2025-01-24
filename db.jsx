@@ -4,6 +4,14 @@ import image3 from "./src/assets/image 8.png";
 import image4 from "./src/assets/image 8-1.png";
 import image5 from "./src/assets/image 8-2.png";
 import image6 from "./src/assets/image 9.png";
+import image7 from "./src/assets/image 9-1.png";
+import image8 from "./src/assets/image 9-2.png";
+import image9 from "./src/assets/image 10.png";
+import image10 from "./src/assets/image 10-1.png";
+import image11 from "./src/assets/image 10-2.png";
+
+
+import database from "./database"
 
 const allProducts = [
   {

@@ -1,5 +1,5 @@
 import MainLayout from "../layouts/MainLayout";
-import db from "../../db";
+import db from "../../database";
 import ProductCard from "../components/ui/ProductCard";
 
 const products = db;
