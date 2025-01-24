@@ -1,13 +1,24 @@
-import image1 from "../assets/image 7.png";
-import image2 from "../assets/image 7-1.png";
-import image3 from "../assets/image 8.png";
 import MainLayout from "../layouts/MainLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { GoCheck } from "react-icons/go";
+import { useParams } from "react-router-dom";
+import allProducts from "../../database";
 
 const ProductDetails = () => {
-  const [displayImage, setDisplayImage] = useState(image1);
+  const [product, setProduct] = useState(null);
+  const { id } = useParams();
+
+  const [displayImage, setDisplayImage] = useState(null);
+
+  useEffect(() => {
+    const foundProduct = allProducts.find((item) => item.id === parseInt(id));
+    setProduct(foundProduct);
+    if (foundProduct && foundProduct.images && foundProduct.images.length > 0) {
+      setDisplayImage(foundProduct.images[0]);
+    }
+  }, [id]);
+
   const [selection, setSelection] = useState({
     color: null,
     size: null,
@@ -23,62 +34,72 @@ const ProductDetails = () => {
 
   console.log(selection);
 
+  // for images
+
+  if (!product) {
+    return <p>Product not found.</p>;
+  }
+
   return (
     <MainLayout>
       <section className="w-full my-5 max-w-[1500px] px-4 md:px-10 lg:px-20">
         <div className="breadcrumbs">
           <p className="text-sm font-thin">
             Home {">"} Shop {">"} Men {">"}{" "}
-            <span className="font-normal">T-shirt</span>
+            <span className="font-normal">{product.type}</span>
           </p>
         </div>
         <div className="space-y-3 my-3">
           <div>
-            <img src={displayImage} alt="" className="rounded-lg w-full" />
+            <img
+              src={`../../public/images/${displayImage}`}
+              alt=""
+              className="rounded-lg w-full"
+            />
           </div>
           <div className="flex items-center justify-between">
             <img
-              onClick={() => setDisplayImage(image1)}
-              src={image1}
+              onClick={() => setDisplayImage(product.images[0])}
+              src={`../../public/images/${product.images[0]}`}
               alt=""
               className="rounded-lg w-24 h-24 cursor-pointer"
             />
             <img
-              onClick={() => setDisplayImage(image2)}
-              src={image2}
+              onClick={() => setDisplayImage(product.images[1])}
+              src={`../../public/images/${product.images[1]}`}
               alt=""
               className="rounded-lg w-24 h-24 cursor-pointer"
             />
             <img
-              onClick={() => setDisplayImage(image3)}
-              src={image3}
+              onClick={() => setDisplayImage(product.images[2])}
+              src={`../../public/images/${product.images[2]}`}
               alt=""
               className="rounded-lg w-24 h-24 cursor-pointer"
             />
           </div>
         </div>
         <div>
-          <h2 className="font-black text-2xl">ONE LIFE GRAPHIC T-SHIRT</h2>
+          <h2 className="font-black text-2xl">
+            {product.title.toLocaleUpperCase()}
+          </h2>
           <div className="flex items-center space-x-2 my-2">
             <FaStar className="text-yellow-400" />
             <FaStar className="text-yellow-400" />
             <FaStar className="text-yellow-400" />
             <FaStar className="text-yellow-400" />
-            <p className="text-xs font-light">4.5/5</p>
+            <p className="text-xs font-light">{product.rating}/5</p>
           </div>
           <div className="flex items-center my-2">
-            <p className="font-bold">$260</p>
-            <del className="text-black/30 font-bold ml-2">$300</del>
+            <p className="font-bold">${product.price.new}</p>
+            <del className="text-black/30 font-bold ml-2">
+              ${product.price.old}
+            </del>
             <span className="w-auto px-2 py-1 rounded-2xl text-red-500 bg-red-500/10 text-xs font- ml-2">
-              -40%
+              -{product.discount}%
             </span>
           </div>
           <div className="border-b border-black/5 pb-5 pt-1">
-            <p className="text-xs font-extralight">
-              This graphic t-shirt which is perfect for any occasion. Crafted
-              from a soft and breathable fabric, it offers superior comfort and
-              style.
-            </p>
+            <p className="text-xs font-extralight">{product.description}</p>
           </div>
           <div className="my-5 space-y-2 border-b border-black/5 pb-5 ">
             <p className="text-xs font-extralight">Select Colors</p>
@@ -160,28 +181,30 @@ const ProductDetails = () => {
             Ratings & Reviews
           </h4>
           <h3 className="font-semibold mt-2">
-            All Reviews <span className="font-light text-xs">(451)</span>
+            All Reviews{" "}
+            <span className="font-light text-xs">
+              ({product.reviews.length})
+            </span>
           </h3>
 
           <div>
-            <div className="border rounded-xl p-4 my-2">
-              <div className="flex items-center space-x-2 my-2">
-                <FaStar className="text-yellow-400" />
-                <FaStar className="text-yellow-400" />
-                <FaStar className="text-yellow-400" />
-                <FaStar className="text-yellow-400" />
+            {product.reviews.map((review) => (
+              <div key={review.user} className="border rounded-xl p-4 my-2">
+                <div className="flex items-center space-x-2 my-2">
+                  <FaStar className="text-yellow-400" />
+                  <FaStar className="text-yellow-400" />
+                  <FaStar className="text-yellow-400" />
+                  <FaStar className="text-yellow-400" />
+                </div>
+                <h5 className="font-semibold">{review.user}</h5>
+                <p className="text-xs font-light text-gray-500 mt-2">
+                  {review.comment}
+                </p>
+                <p className="text-xs font-light text-gray-500 mt-2">
+                  Posted on August 15, 2023
+                </p>
               </div>
-              <h5 className="font-semibold">Samantha D.</h5>
-              <p className="text-xs font-light text-gray-500 mt-2">
-                &quot;The t-shirt exceeded my expectations! The colors are
-                vibrant and the print quality is top-notch. Being a UI/UX
-                designer myself, I&apos;m quite picky about aesthetics, and this
-                t-shirt definitely gets a thumbs up from me.&quot;
-              </p>
-              <p className="text-xs font-light text-gray-500 mt-2">
-                Posted on August 15, 2023
-              </p>
-            </div>
+            ))}
           </div>
         </div>
       </section>

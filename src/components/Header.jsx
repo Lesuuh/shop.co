@@ -4,7 +4,7 @@ import { VscAccount } from "react-icons/vsc";
 import { IoCartOutline } from "react-icons/io5";
 import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { useState } from "react";
-// import { useRef } from "react";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
@@ -21,13 +21,17 @@ const Header = () => {
             size={30}
             className="md:hidden"
           />
-          <div className="text-2xl font-black ml-2">SHOP.CO</div>
+          <NavLink to="/" end>
+            <div className="text-2xl font-black ml-2">SHOP.CO</div>
+          </NavLink>
         </div>
 
         <ul className="hidden md:flex items-center md:space-x-4">
-          <li className="flex items-center font-light text-sm">
-            Shop <IoIosArrowDown className="ml-1" />
-          </li>
+          <NavLink to="/products">
+            <li className="flex items-center font-light text-sm">
+              Shop <IoIosArrowDown className="ml-1" />
+            </li>
+          </NavLink>
           <li className="font-light text-sm">On Sale</li>
           <li className="font-light text-sm">New Arrivals</li>
           <li className="font-light text-sm">Brands</li>
