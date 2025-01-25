@@ -1,21 +1,10 @@
 import ProductCard from "./ProductCard";
-// import { useEffect, useState } from "react";
 
 import db from "../../../database";
-const featuredProducts = db;
+
+const featuredProducts = db.filter((products) => products.isFeatured === true);
 
 const TopSelling = () => {
-  // const [featuredProducts, setFeaturedProducts] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const response = await fetch("http://localhost:3000/product");
-  //     const data = await response.json();
-  //     setFeaturedProducts(data);
-  //   };
-
-  //   fetchData();
-  // }, []);
   return (
     <section className="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-20 mt-8">
       <h2 className="text-center font-black text-2xl mb-2">TOP SELLINGS</h2>

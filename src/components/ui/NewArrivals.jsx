@@ -1,7 +1,7 @@
 import ProductCard from "./ProductCard";
 import db from "../../../database";
 
-const newArrivals = db;
+const newArrivals = db.filter((product)=> product.isNew === true);
 
 const NewArrivals = () => {
   return (
