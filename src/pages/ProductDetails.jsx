@@ -25,11 +25,32 @@ const ProductDetails = () => {
     quantity: "1",
   });
 
+  const [btnActiveState, setBtnActiveState] = useState("");
+
+  // function to rename the size name
+  // const renameSize = (item) => {
+  //   switch (item) {
+  //     case "S":
+  //       return "Small";
+  //     case "M":
+  //       return "Medium";
+  //     case "L":
+  //       return "Large";
+  //     case "XL":
+  //       return "X-Large";
+  //     case "XXL":
+  //       return "XX-Large";
+  //     default:
+  //       return item;
+  //   }
+  // };
+
   const handleColor = (color) => {
     setSelection((prevState) => ({ ...prevState, color }));
   };
   const handleSize = (size) => {
-    setSelection((prevState) => ({ ...prevState, size }));
+    // setSelection((prevState) => ({ ...prevState, size }));
+    setBtnActiveState(size);
   };
 
   console.log(selection);
@@ -52,7 +73,7 @@ const ProductDetails = () => {
         <div className="space-y-3 my-3">
           <div>
             <img
-              src={`../../public/images/${displayImage}`}
+              src={`../../images/${displayImage}`}
               alt=""
               className="rounded-lg w-full"
             />
@@ -60,19 +81,19 @@ const ProductDetails = () => {
           <div className="flex items-center justify-between">
             <img
               onClick={() => setDisplayImage(product.images[0])}
-              src={`../../public/images/${product.images[0]}`}
+              src={`../../images/${product.images[0]}`}
               alt=""
               className="rounded-lg w-24 h-24 cursor-pointer"
             />
             <img
               onClick={() => setDisplayImage(product.images[1])}
-              src={`../../public/images/${product.images[1]}`}
+              src={`../../images/${product.images[1]}`}
               alt=""
               className="rounded-lg w-24 h-24 cursor-pointer"
             />
             <img
               onClick={() => setDisplayImage(product.images[2])}
-              src={`../../public/images/${product.images[2]}`}
+              src={`../../images/${product.images[2]}`}
               alt=""
               className="rounded-lg w-24 h-24 cursor-pointer"
             />
@@ -132,33 +153,23 @@ const ProductDetails = () => {
               </div>
             </div>
           </div>
+          {/* buttons */}
           <div className="my-5 space-y-2 border-b border-black/5 pb-5">
             <p className="text-xs font-extralight">Choose Size</p>
             <div className="flex items-center">
-              <button
-                onClick={() => handleSize("Small")}
-                className="border p-2 bg-gray-100 text-xs font-extralight rounded-2xl px-4 border-none outline-none active:bg-black active:text-white hover:bg-black hover:text-white"
-              >
-                Small
-              </button>
-              <button
-                onClick={() => handleSize("Medium")}
-                className="border p-2 bg-gray-100 text-xs font-extralight rounded-2xl px-4 border-none outline-none active:bg-black active:text-white hover:bg-black hover:text-white ml-2"
-              >
-                Medium
-              </button>
-              <button
-                onClick={() => handleSize("Large")}
-                className="border p-2 bg-gray-100 text-xs font-extralight rounded-2xl px-4 border-none outline-none active:bg-black active:text-white hover:bg-black hover:text-white ml-2"
-              >
-                Large
-              </button>
-              <button
-                onClick={() => handleSize("X-Large")}
-                className="border p-2 bg-gray-100 text-xs font-extralight rounded-2xl px-4 border-none outline-none active:bg-black active:text-white hover:bg-black hover:text-white ml-2"
-              >
-                X-Large
-              </button>
+              {product.sizes.map((size) => (
+                <button
+                  key={size}
+                  onClick={() => handleSize(size)}
+                  className={`border p-2  text-xs font-extralight rounded-2xl px-4 border-none outline-none hover:bg-black hover:text-white ${
+                    btnActiveState === size
+                      ? "bg-black text-white"
+                      : "bg-gray-100"
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
             </div>
           </div>
           <div className="flex items-center justify-betweeen">
