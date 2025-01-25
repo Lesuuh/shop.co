@@ -5,7 +5,7 @@ const allProducts = [
     discount: 20,
     price: {
       old: 20,
-      new: 15,
+
     },
     rating: 4.5,
     description: "High quality Gym t-shirt",
@@ -39,7 +39,7 @@ const allProducts = [
     discount: 10,
     price: {
       old: 30,
-      new: 27,
+
     },
     rating: 5,
     description: "Comfortable yoga pants with stretchable fabric",
@@ -73,7 +73,7 @@ const allProducts = [
     discount: 15,
     price: {
       old: 25,
-      new: 21.25,
+
     },
     rating: 4,
     description: "Lightweight running shorts for outdoor activities",
@@ -102,7 +102,7 @@ const allProducts = [
     discount: 25,
     price: {
       old: 50,
-      new: 37.5,
+
     },
     rating: 5,
     description: "Soft and comfortable hoodie for casual wear",
@@ -131,7 +131,6 @@ const allProducts = [
     discount: 15,
     price: {
       old: 75,
-      new: 63.75,
     },
     rating: 2,
     description: "Trendy denim jacket for casual outings",
@@ -160,7 +159,7 @@ const allProducts = [
     discount: 20,
     price: {
       old: 40,
-      new: 32,
+
     },
     rating: 4.5,
     description: "Elegant formal shirt for office wear",
@@ -189,7 +188,7 @@ const allProducts = [
     discount: 30,
     price: {
       old: 60,
-      new: 42,
+  
     },
     rating: 4,
     description: "Light and airy summer dress for hot days",
@@ -218,7 +217,7 @@ const allProducts = [
     discount: 35,
     price: {
       old: 55,
-      new: 35.75,
+
     },
     rating: 5,
     description: "Warm sweater with a classic design",

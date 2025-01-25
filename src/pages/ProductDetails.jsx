@@ -1,14 +1,14 @@
 import MainLayout from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
-import { FaStar } from "react-icons/fa";
 import { GoCheck } from "react-icons/go";
 import { useParams } from "react-router-dom";
 import allProducts from "../../database";
+import StarRatings from "../components/StarRatings";
+import calculateNewPrice from "../components/CalculateNewPrice";
 
 const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
-
   const [displayImage, setDisplayImage] = useState(null);
 
   useEffect(() => {
@@ -22,40 +22,29 @@ const ProductDetails = () => {
   const [selection, setSelection] = useState({
     color: null,
     size: null,
-    quantity: "1",
+    quantity: 1,
   });
 
   const [btnActiveState, setBtnActiveState] = useState("");
 
-  // function to rename the size name
-  // const renameSize = (item) => {
-  //   switch (item) {
-  //     case "S":
-  //       return "Small";
-  //     case "M":
-  //       return "Medium";
-  //     case "L":
-  //       return "Large";
-  //     case "XL":
-  //       return "X-Large";
-  //     case "XXL":
-  //       return "XX-Large";
-  //     default:
-  //       return item;
-  //   }
-  // };
+  const handleReduceCartQuantity = (quantity) => {
+    if (quantity > 1) {
+      setSelection((prevState) => ({ ...prevState, quantity: quantity - 1 }));
+    }
+  };
+  const handleIncreaseCartQuantity = (quantity) => {
+    setSelection((prevState) => ({ ...prevState, quantity: quantity + 1 }));
+  };
 
   const handleColor = (color) => {
     setSelection((prevState) => ({ ...prevState, color }));
   };
   const handleSize = (size) => {
-    // setSelection((prevState) => ({ ...prevState, size }));
+    setSelection((prevState) => ({ ...prevState, size }));
     setBtnActiveState(size);
   };
 
   console.log(selection);
-
-  // for images
 
   if (!product) {
     return <p>Product not found.</p>;
@@ -104,14 +93,11 @@ const ProductDetails = () => {
             {product.title.toLocaleUpperCase()}
           </h2>
           <div className="flex items-center space-x-2 my-2">
-            <FaStar className="text-yellow-400" />
-            <FaStar className="text-yellow-400" />
-            <FaStar className="text-yellow-400" />
-            <FaStar className="text-yellow-400" />
+            <StarRatings ratings={product.rating} />
             <p className="text-xs font-light">{product.rating}/5</p>
           </div>
           <div className="flex items-center my-2">
-            <p className="font-bold">${product.price.new}</p>
+            <p className="font-bold">${calculateNewPrice(product)}</p>
             <del className="text-black/30 font-bold ml-2">
               ${product.price.old}
             </del>
@@ -174,11 +160,19 @@ const ProductDetails = () => {
           </div>
           <div className="flex items-center justify-betweeen">
             <div className="flex items-center">
-              <button className="rounded-l-2xl bg-gray-100 text-xl py-1 px-3">
+              <button
+                onClick={() => handleReduceCartQuantity(selection.quantity)}
+                className="rounded-l-2xl bg-gray-100 text-xl py-1 px-3"
+              >
                 -
               </button>
-              <span className="bg-gray-100 text-xs py-2.5 px-2 ">1</span>
-              <button className="rounded-r-2xl bg-gray-100 text-xl py-1 px-3">
+              <span className="bg-gray-100 text-xs py-2.5 px-2 ">
+                {selection.quantity}
+              </span>
+              <button
+                onClick={() => handleIncreaseCartQuantity(selection.quantity)}
+                className="rounded-r-2xl bg-gray-100 text-xl py-1 px-3"
+              >
                 +
               </button>
             </div>
@@ -201,12 +195,7 @@ const ProductDetails = () => {
           <div>
             {product.reviews.map((review) => (
               <div key={review.user} className="border rounded-xl p-4 my-2">
-                <div className="flex items-center space-x-2 my-2">
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                  <FaStar className="text-yellow-400" />
-                </div>
+                <StarRatings ratings={review.rating} />
                 <h5 className="font-semibold">{review.user}</h5>
                 <p className="text-xs font-light text-gray-500 mt-2">
                   {review.comment}
