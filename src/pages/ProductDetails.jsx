@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import MainLayout from "../layouts/MainLayout";
 import { useEffect, useState } from "react";
 import { GoCheck } from "react-icons/go";
@@ -5,11 +6,25 @@ import { useParams } from "react-router-dom";
 import allProducts from "../../database";
 import StarRatings from "../components/StarRatings";
 import calculateNewPrice from "../components/CalculateNewPrice";
+// import ClipLoader from "react-spinners/ClipLoader";
 
-const ProductDetails = () => {
+const ProductDetails = ({ cart, setCart, addToCart }) => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const [displayImage, setDisplayImage] = useState(null);
+  const [userSelection, setUserSelection] = useState({
+    id: id,
+    name: "",
+    color: null,
+    size: null,
+    quantity: 1,
+  });
+  // let [loading, setLoading] = useState(true);
+  // const override = {
+  //   display: "block",
+  //   margin: "0 auto",
+  //   borderColor: "red",
+  // };
 
   useEffect(() => {
     const foundProduct = allProducts.find((item) => item.id === parseInt(id));
@@ -17,37 +32,42 @@ const ProductDetails = () => {
     if (foundProduct && foundProduct.images && foundProduct.images.length > 0) {
       setDisplayImage(foundProduct.images[0]);
     }
-  }, [id]);
-
-  const [selection, setSelection] = useState({
-    color: null,
-    size: null,
-    quantity: 1,
-  });
+  }, [id, setCart]);
 
   const [btnActiveState, setBtnActiveState] = useState("");
 
   const handleReduceCartQuantity = (quantity) => {
     if (quantity > 1) {
-      setSelection((prevState) => ({ ...prevState, quantity: quantity - 1 }));
+      setUserSelection((prevState) => ({
+        ...prevState,
+        quantity: quantity - 1,
+      }));
     }
   };
   const handleIncreaseCartQuantity = (quantity) => {
-    setSelection((prevState) => ({ ...prevState, quantity: quantity + 1 }));
+    setUserSelection((prevState) => ({ ...prevState, quantity: quantity + 1 }));
   };
 
   const handleColor = (color) => {
-    setSelection((prevState) => ({ ...prevState, color }));
+    setUserSelection((prevState) => ({ ...prevState, color }));
   };
   const handleSize = (size) => {
-    setSelection((prevState) => ({ ...prevState, size }));
+    setUserSelection((prevState) => ({ ...prevState, size }));
     setBtnActiveState(size);
   };
 
-  console.log(selection);
 
   if (!product) {
-    return <p>Product not found.</p>;
+    return (
+      <p>Product not found</p>
+      // <ClipLoader
+      //   loading={loading}
+      //   cssOverride={override}
+      //   size={150}
+      //   aria-label="Loading Spinner"
+      //   data-testid="loader"
+      // />
+    );
   }
 
   return (
@@ -115,10 +135,10 @@ const ProductDetails = () => {
                 onClick={() => handleColor("black")}
                 className="w-8 h-8 bg-black rounded-full flex items-center justify-center"
               >
-                {selection.color === "black" ? (
+                {cart.color === "black" ? (
                   <GoCheck
                     className={`${
-                      selection.color === "black" ? "text-white" : ""
+                      userSelection.color === "black" ? "text-white" : ""
                     }`}
                   />
                 ) : (
@@ -129,13 +149,13 @@ const ProductDetails = () => {
                 onClick={() => handleColor("gray")}
                 className="w-8 h-8 bg-gray-500 rounded-full ml-2 flex items-center justify-center"
               >
-                {selection.color === "gray" ? <GoCheck /> : ""}
+                {userSelection.color === "gray" ? <GoCheck /> : ""}
               </div>
               <div
                 onClick={() => handleColor("red")}
                 className="w-8 h-8 bg-red-500 rounded-full ml-2 flex items-center justify-center"
               >
-                {selection.color === "red" ? <GoCheck /> : ""}
+                {userSelection.color === "red" ? <GoCheck /> : ""}
               </div>
             </div>
           </div>
@@ -161,22 +181,27 @@ const ProductDetails = () => {
           <div className="flex items-center justify-betweeen">
             <div className="flex items-center">
               <button
-                onClick={() => handleReduceCartQuantity(selection.quantity)}
+                onClick={() => handleReduceCartQuantity(userSelection.quantity)}
                 className="rounded-l-2xl bg-gray-100 text-xl py-1 px-3"
               >
                 -
               </button>
               <span className="bg-gray-100 text-xs py-2.5 px-2 ">
-                {selection.quantity}
+                {userSelection.quantity}
               </span>
               <button
-                onClick={() => handleIncreaseCartQuantity(selection.quantity)}
+                onClick={() =>
+                  handleIncreaseCartQuantity(userSelection.quantity)
+                }
                 className="rounded-r-2xl bg-gray-100 text-xl py-1 px-3"
               >
                 +
               </button>
             </div>
-            <button className="flex-1 ml-2 bg-black text-white text-xs rounded-2xl py-2 font-light">
+            <button
+              onClick={() => addToCart(userSelection)}
+              className="flex-1 ml-2 bg-black text-white text-xs rounded-2xl py-2 font-light"
+            >
               Add to Cart
             </button>
           </div>
