@@ -5,7 +5,6 @@ import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import { useState } from "react";
 
-
 function App() {
   const [cart, setCart] = useState([]);
 
@@ -23,7 +22,7 @@ function App() {
       if (existingProductIndex >= 0) {
         updatedCart[existingProductIndex].quantity = userSelection.quantity;
       } else {
-        updatedCart.push({...userSelection});
+        updatedCart.push({ ...userSelection });
       }
 
       console.log("Updated Cart:", updatedCart);
@@ -42,7 +41,7 @@ function App() {
         }
       />
       <Route path="/category" />
-      <Route path="/cart" element={<Cart />} />
+      <Route path="/cart" element={<Cart cart={cart} />} />
     </Routes>
   );
 }
