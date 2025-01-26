@@ -27,7 +27,8 @@ const Cart = ({ cart }) => {
             </p>
           </div>
         ) : (
-          <div className="border p-3 rounded-xl">
+          cart.map((cartItem)=> (
+            <div key={cartItem.id} className="border p-3 rounded-xl">
             <div className="relative flex w-full space-x-3">
               <div className="img">
                 <img
@@ -40,10 +41,10 @@ const Cart = ({ cart }) => {
                 <div className="flex flex-col">
                   <h3 className="text-sm font-semibold">Checkered Shirt</h3>
                   <p className="text-xs font-light">
-                    Size: <span className="font-extralight">{cart.size}</span>
+                    Size: <span className="font-extralight">{cartItem.size}</span>
                   </p>
                   <p className="text-xs font-light">
-                    Color: <span className="font-extralight">{cart.color}</span>
+                    Color: <span className="font-extralight">{cartItem.color}</span>
                   </p>
                 </div>
                 <div className="flex justify-between w-full">
@@ -53,7 +54,7 @@ const Cart = ({ cart }) => {
                       -
                     </button>
                     <span className="bg-gray-100 text-xs py-1.5 px-2 ">
-                      {cart.quantity}
+                      {cartItem.quantity}
                     </span>
                     <button className="rounded-r-2xl bg-gray-100 text-xl  px-3">
                       +
@@ -64,6 +65,7 @@ const Cart = ({ cart }) => {
               <RiDeleteBinFill className="absolute top-0 right-0 text-red-500" />
             </div>
           </div>
+          ))
         )}
       </section>
     </MainLayout>

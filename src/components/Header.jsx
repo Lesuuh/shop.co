@@ -4,7 +4,7 @@ import { VscAccount } from "react-icons/vsc";
 import { IoCartOutline } from "react-icons/io5";
 import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
@@ -47,9 +47,9 @@ const Header = () => {
         </form>
 
         <div className="flex items-center space-x-3 ">
-          <CiSearch className="md:hidden font-semibold " size={20} />
-          <IoCartOutline size={20} />
-          <VscAccount size={20} />
+          <Link to="/search"><CiSearch className="md:hidden font-semibold " size={20} /></Link>
+          <Link to="/cart"><IoCartOutline size={20} /></Link>
+          <Link><VscAccount size={20} /></Link>
         </div>
 
         {/* menu */}
