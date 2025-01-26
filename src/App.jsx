@@ -3,10 +3,18 @@ import HomePage from "./pages/HomePage";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [cart, setCart] = useState([]);
+
+  // loading cart from local storage
+  const savedCart = JSON.parse(localStorage.getItem("cart"))
+  const [cart, setCart] = useState( savedCart || []);
+
+  // Save cart to local storage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   // function to add to cart
   function addToCart(userSelection) {

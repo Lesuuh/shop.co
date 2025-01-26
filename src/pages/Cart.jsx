@@ -38,14 +38,14 @@ const Cart = ({ cart }) => {
               >
                 <div className="img">
                   <img
-                    src="../../images/image 10-1.png"
+                    src={`../../images/${cartItem.image}`}
                     alt=""
                     className="w-[100px] rounded-xl"
                   />
                 </div>
                 <div className="w-full flex flex-col items-start justify-between">
                   <div className="flex flex-col">
-                    <h3 className="text-sm font-semibold">Checkered Shirt</h3>
+                    <h3 className="text-sm font-semibold">{cartItem.name}</h3>
                     <p className="text-xs font-light">
                       Size:{" "}
                       <span className="font-extralight">{cartItem.size}</span>

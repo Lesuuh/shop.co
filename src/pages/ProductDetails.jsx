@@ -15,6 +15,7 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
   const [userSelection, setUserSelection] = useState({
     id: id,
     name: "",
+    image: null,
     color: null,
     size: null,
     quantity: 1,
@@ -32,7 +33,14 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
     if (foundProduct && foundProduct.images && foundProduct.images.length > 0) {
       setDisplayImage(foundProduct.images[0]);
     }
+    setUserSelection((prevState) => ({
+      ...prevState,
+      name: foundProduct.title,
+      image: foundProduct.images[0],
+    }));
   }, [id, setCart]);
+
+  useEffect(() => {}, [product]);
 
   const [btnActiveState, setBtnActiveState] = useState("");
 
@@ -55,7 +63,6 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
     setUserSelection((prevState) => ({ ...prevState, size }));
     setBtnActiveState(size);
   };
-
 
   if (!product) {
     return (
