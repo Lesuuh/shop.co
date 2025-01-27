@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import allProducts from "../../database";
 import StarRatings from "../components/StarRatings";
 import calculateNewPrice from "../components/CalculateNewPrice";
+import { FaCircleCheck } from "react-icons/fa6";
 // import ClipLoader from "react-spinners/ClipLoader";
 
 const ProductDetails = ({ cart, setCart, addToCart }) => {
@@ -229,11 +230,14 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
             </span>
           </h3>
 
-          <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 my-3">
             {product.reviews.map((review) => (
-              <div key={review.user} className="border rounded-xl p-4 my-2">
+              <div key={review.user} className="border rounded-xl p-4 ">
                 <StarRatings ratings={review.rating} />
-                <h5 className="font-semibold">{review.user}</h5>
+                <div className="flex items-center">
+                  <h5 className="font-semibold">{review.user}</h5>
+                  <FaCircleCheck className="text-green-500 ml-2" />
+                </div>
                 <p className="text-xs font-light text-gray-500 mt-2">
                   {review.comment}
                 </p>
