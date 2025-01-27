@@ -5,18 +5,13 @@ const allProducts = [
     discount: 20,
     price: {
       old: 20,
-
     },
     rating: 4.5,
     description: "High quality Gym t-shirt",
     category: "gym",
     type: "T-shirt",
-    images: [
-      "image 7.png",
-      "image 7(2).png",
-      "image 8-1.png",
-    ],
-    sizes: ["S", "M", "L", "XL"],
+    images: ["image 7.png", "image 7(2).png", "image 8-1.png"],
+    sizes: ["Small", "Medium", "Large", "X-Large"],
     color: "blue",
     reviews: [
       {
@@ -39,18 +34,13 @@ const allProducts = [
     discount: 10,
     price: {
       old: 30,
-
     },
     rating: 5,
     description: "Comfortable yoga pants with stretchable fabric",
     category: "gym",
     type: "pants",
-    images: [
-      "image 8-2.png",
-      "image 7-1.png",
-      "image 9-1.png",
-    ],
-    sizes: ["S", "M", "L"],
+    images: ["image 8-2.png", "image 7-1.png", "image 9-1.png"],
+    sizes: ["Small", "Medium", "Large"],
     color: "black",
     reviews: [
       {
@@ -73,18 +63,13 @@ const allProducts = [
     discount: 15,
     price: {
       old: 25,
-
     },
     rating: 4,
     description: "Lightweight running shorts for outdoor activities",
     category: "sports",
     type: "shorts",
-    images: [
-      "image 9-2.png",
-      "image 9.png",
-      "image 8.png",
-    ],
-    sizes: ["M", "L", "XL"],
+    images: ["image 9-2.png", "image 9.png", "image 8.png"],
+    sizes: ["Medium", "Large", "X-Large"],
     color: "gray",
     reviews: [
       {
@@ -102,18 +87,13 @@ const allProducts = [
     discount: 25,
     price: {
       old: 50,
-
     },
     rating: 5,
     description: "Soft and comfortable hoodie for casual wear",
     category: "fashion",
     type: "hoodie",
-    images: [
-      "image 8-1.png",
-      "image 7-1.png",
-      "image 10.png",
-    ],
-    sizes: ["M", "L", "XL", "XXL"],
+    images: ["image 8-1.png", "image 7-1.png", "image 10.png"],
+    sizes: ["Medium", "Large", "X-Large", "XX-Large"],
     color: "navy blue",
     reviews: [
       {
@@ -136,12 +116,8 @@ const allProducts = [
     description: "Trendy denim jacket for casual outings",
     category: "fashion",
     type: "jacket",
-    images: [
-      "image 9.png",
-      "image 8-2.png",
-      "image 10-1.png",
-    ],
-    sizes: ["M", "L", "XL"],
+    images: ["image 9.png", "image 8-2.png", "image 10-1.png"],
+    sizes: ["Medium", "Large", "X-Large"],
     color: "blue",
     reviews: [
       {
@@ -159,18 +135,13 @@ const allProducts = [
     discount: 20,
     price: {
       old: 40,
-
     },
     rating: 4.5,
     description: "Elegant formal shirt for office wear",
     category: "formal",
     type: "shirt",
-    images: [
-      "image 7.png",
-      "image 8.png",
-      "image 9.png",
-    ],
-    sizes: ["S", "M", "L", "XL"],
+    images: ["image 7.png", "image 8.png", "image 9.png"],
+    sizes: ["Small", "Medium", "Large", "X-Large"],
     color: "white",
     reviews: [
       {
@@ -188,18 +159,13 @@ const allProducts = [
     discount: 30,
     price: {
       old: 60,
-  
     },
     rating: 4,
     description: "Light and airy summer dress for hot days",
     category: "fashion",
     type: "dress",
-    images: [
-      "image 10-2.png",
-      "image 8-2.png",
-      "image 9.png",
-    ],
-    sizes: ["S", "M", "L"],
+    images: ["image 10-2.png", "image 8-2.png", "image 9.png"],
+    sizes: ["Small", "Medium", "Large"],
     color: "yellow",
     reviews: [
       {
@@ -217,18 +183,13 @@ const allProducts = [
     discount: 35,
     price: {
       old: 55,
-
     },
     rating: 5,
     description: "Warm sweater with a classic design",
     category: "winter",
     type: "sweater",
-    images: [
-      "image 7.png",
-      "image 7-1.png",
-      "image 8.png",
-    ],
-    sizes: ["M", "L", "XL", "XXL"],
+    images: ["image 7.png", "image 7-1.png", "image 8.png"],
+    sizes: ["Medium", "Large", "X-Large", "XX-Large"],
     color: "gray",
     reviews: [
       {

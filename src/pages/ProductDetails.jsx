@@ -171,7 +171,7 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
             {/* buttons */}
             <div className="my-5 space-y-2 border-b border-black/5 pb-5">
               <p className="text-xs font-extralight">Choose Size</p>
-              <div className="flex items-center">
+              <div className="flex items-center space-x-2">
                 {product.sizes.map((size) => (
                   <button
                     key={size}
