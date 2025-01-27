@@ -6,10 +6,9 @@ import ProductDetails from "./pages/ProductDetails";
 import { useEffect, useState } from "react";
 
 function App() {
-
   // loading cart from local storage
-  const savedCart = JSON.parse(localStorage.getItem("cart"))
-  const [cart, setCart] = useState( savedCart || []);
+  const savedCart = JSON.parse(localStorage.getItem("cart"));
+  const [cart, setCart] = useState(savedCart || []);
 
   // Save cart to local storage whenever it changes
   useEffect(() => {
@@ -38,6 +37,19 @@ function App() {
     });
   }
 
+  // function to delete from cart
+  function deleteFromCart(cartItem) {
+    const newCart = cart.filter(
+      (item) =>
+        item.id !== cartItem.id ||
+        item.size !== cartItem.size ||
+        item.color !== cartItem.color
+    );
+    console.log(newCart);
+    console.log("Deleting Item:", cartItem);
+    setCart(newCart);
+  }
+
   return (
     <Routes>
       <Route index element={<HomePage />} />
@@ -49,7 +61,10 @@ function App() {
         }
       />
       <Route path="/category" />
-      <Route path="/cart" element={<Cart cart={cart} />} />
+      <Route
+        path="/cart"
+        element={<Cart cart={cart} deleteFromCart={deleteFromCart} />}
+      />
     </Routes>
   );
 }
