@@ -71,7 +71,7 @@ const Cart = ({ cart, deleteFromCart }) => {
                         </p>
                       </div>
                       <div className="flex justify-between w-full">
-                        <h3 className="font-semibold">$145</h3>
+                        <h3 className="font-semibold">${cartItem.price}</h3>
                         <div className="flex items-center ml-auto">
                           <button className="rounded-l-2xl bg-gray-100 text-xl px-3 md:px-4 md:py-1">
                             -
