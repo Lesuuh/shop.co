@@ -6,7 +6,7 @@ const featuredProducts = db.filter((products) => products.isFeatured === true);
 
 const TopSelling = () => {
   return (
-    <section className="w-full max-w-[1200px] mx-auto px-4 md:px-10 lg:px-20 mt-8">
+    <section className="w-full max-w-[1500px] mx-auto px-4 md:px-10 lg:px-20 mt-8">
       <h2 className="text-center font-black text-2xl mb-2">TOP SELLINGS</h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center gap-4">
         {featuredProducts.map((item) => (
