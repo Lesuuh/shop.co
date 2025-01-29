@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { MdMenu } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { VscAccount } from "react-icons/vsc";
@@ -6,7 +7,7 @@ import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ totalQuantity }) => {
   const [menu, setMenu] = useState(false);
 
   return (
@@ -47,9 +48,20 @@ const Header = () => {
         </form>
 
         <div className="flex items-center space-x-3 ">
-          <Link to="/search"><CiSearch className="md:hidden font-semibold " size={20} /></Link>
-          <Link to="/cart"><IoCartOutline size={20} /></Link>
-          <Link><VscAccount size={20} /></Link>
+          <Link to="/search">
+            <CiSearch className="md:hidden font-semibold " size={20} />
+          </Link>
+          <NavLink to="/cart" className="relative">
+            <IoCartOutline size={20} />
+            {totalQuantity > 0 && (
+              <span className="text-red-500 font-bold absolute -top-2 right-0 text-xs">
+                {totalQuantity}
+              </span>
+            )}
+          </NavLink>
+          <Link>
+            <VscAccount size={20} />
+          </Link>
         </div>
 
         {/* menu */}

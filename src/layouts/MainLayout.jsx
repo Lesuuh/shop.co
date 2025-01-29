@@ -3,11 +3,11 @@ import TopHeader from "../components/TopHeader";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, totalQuantity }) => {
   return (
     <>
       <TopHeader />
-      <Header />
+      <Header totalQuantity={totalQuantity} />
       {children}
       <Footer />
     </>

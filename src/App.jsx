@@ -4,6 +4,7 @@ import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import { useEffect, useState } from "react";
+import MainLayout from "./layouts/MainLayout";
 
 function App() {
   // loading cart from local storage
@@ -50,22 +51,32 @@ function App() {
     setCart(newCart);
   }
 
+  // getting the total quantity in cart
+  const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+  console.log(totalQuantity);
+
   return (
-    <Routes>
-      <Route index element={<HomePage />} />
-      <Route path="/products" element={<Products addToCart={addToCart} />} />
-      <Route
-        path="/products/:id"
-        element={
-          <ProductDetails cart={cart} setCart={setCart} addToCart={addToCart} />
-        }
-      />
-      <Route path="/category" />
-      <Route
-        path="/cart"
-        element={<Cart cart={cart} deleteFromCart={deleteFromCart} />}
-      />
-    </Routes>
+    <MainLayout totalQuantity={totalQuantity}>
+      <Routes>
+        <Route index element={<HomePage />} />
+        <Route path="/products" element={<Products addToCart={addToCart} />} />
+        <Route
+          path="/products/:id"
+          element={
+            <ProductDetails
+              cart={cart}
+              setCart={setCart}
+              addToCart={addToCart}
+            />
+          }
+        />
+        <Route path="/category" />
+        <Route
+          path="/cart"
+          element={<Cart cart={cart} deleteFromCart={deleteFromCart} />}
+        />
+      </Routes>
+    </MainLayout>
   );
 }
 
