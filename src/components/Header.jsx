@@ -68,6 +68,7 @@ const Header = ({ totalQuantity }) => {
         {menu && (
           <div className="absolute top-0 left-0 bg-white w-[70%] h-[100dvh]  z-10">
             <IoMdClose
+              size={20}
               onClick={() => setMenu(false)}
               className="float-right mr-4"
             />
