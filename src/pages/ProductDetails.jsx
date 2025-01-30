@@ -10,6 +10,7 @@ import { FaCircleCheck } from "react-icons/fa6";
 // import ClipLoader from "react-spinners/ClipLoader";
 
 const ProductDetails = ({ cart, setCart, addToCart }) => {
+  console.log(cart);
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const [displayImage, setDisplayImage] = useState(null);
@@ -22,6 +23,7 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
     price: null,
     quantity: 1,
   });
+
   // let [loading, setLoading] = useState(true);
   // const override = {
   //   display: "block",

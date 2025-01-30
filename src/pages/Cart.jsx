@@ -6,7 +6,8 @@ import { FiTag } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const Cart = ({ cart, deleteFromCart, subPrice }) => {
+const Cart = ({ cart, setCart, deleteFromCart, subPrice }) => {
+  console.log(cart);
   const [userInputpromoCode, setUserInputPromoCode] = useState("");
   let deliveryFee = 10;
   let discountPercentage = 10;
@@ -14,8 +15,6 @@ const Cart = ({ cart, deleteFromCart, subPrice }) => {
   const [total, setTotal] = useState(subPrice + deliveryFee);
   const [isPromoApplied, setIsPromoApplied] = useState(false);
   const [discountedPrice, setDiscountedPrice] = useState(0);
-
-  // still having a bug with the discounted price
 
   useEffect(() => {
     let discountAmount = 0;
@@ -30,7 +29,6 @@ const Cart = ({ cart, deleteFromCart, subPrice }) => {
     const userPromoCode = e.target.value;
     setUserInputPromoCode(userPromoCode);
   };
-
   const handlePromoButton = (e) => {
     e.preventDefault();
     if (isPromoApplied) {
@@ -46,6 +44,42 @@ const Cart = ({ cart, deleteFromCart, subPrice }) => {
       setIsPromoApplied(true);
     }
   };
+
+  // handle increment or decrement in cart
+  const handleCartQuantityIncrement = (cartId) => {
+    setCart((prevCartState) =>
+      prevCartState.map((item) =>
+        item.cartId === cartId
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
+          : item
+      )
+    );
+  };
+
+  const handleCartQuantityDecrement = (cartId) => {
+    setCart((prevCartState) =>
+      prevCartState.map((item) =>
+        item.cartId === cartId
+          ? {
+              ...item,
+              quantity: item.quantity - 1,
+            }
+          : item
+      )
+    );
+  };
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
+  const handlePrice = (price, quantity) => {
+    const subItemPrice = price * quantity;
+    return subItemPrice;
+  };
+
   return (
     <section className="w-full my-5 max-w-[1500px] px-4 md:px-10 lg:px-20">
       <div className="breadcrumbs">
@@ -79,7 +113,7 @@ const Cart = ({ cart, deleteFromCart, subPrice }) => {
               {/* CART ITEMS */}
               {cart.map((cartItem) => (
                 <div
-                  key={cartItem.id}
+                  key={cartItem.cartId}
                   className="flex w-full space-x-3 py-3 border-b "
                 >
                   <img
@@ -113,15 +147,27 @@ const Cart = ({ cart, deleteFromCart, subPrice }) => {
                       </p>
                     </div>
                     <div className="flex justify-between w-full">
-                      <h3 className="font-semibold">${cartItem.price}</h3>
+                      <h3 className="font-semibold">
+                        ${handlePrice(cartItem.price, cartItem.quantity)}
+                      </h3>
                       <div className="flex items-center ml-auto">
-                        <button className="rounded-l-2xl bg-gray-100 text-xl px-3 md:px-4 md:py-1">
+                        <button
+                          onClick={() =>
+                            handleCartQuantityDecrement(cartItem.cartId)
+                          }
+                          className="rounded-l-2xl bg-gray-100 text-xl px-3 md:px-4 md:py-1"
+                        >
                           -
                         </button>
                         <span className="bg-gray-100 text-xs py-1.5 px-2  md:px-4 md:py-2.5">
                           {cartItem.quantity}
                         </span>
-                        <button className="rounded-r-2xl bg-gray-100 text-xl  px-3 md:px-4 md:py-1">
+                        <button
+                          onClick={() =>
+                            handleCartQuantityIncrement(cartItem.cartId)
+                          }
+                          className="rounded-r-2xl bg-gray-100 text-xl  px-3 md:px-4 md:py-1"
+                        >
                           +
                         </button>
                       </div>

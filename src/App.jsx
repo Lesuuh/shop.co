@@ -6,6 +6,10 @@ import ProductDetails from "./pages/ProductDetails";
 import { useEffect, useState } from "react";
 import MainLayout from "./layouts/MainLayout";
 import { ToastContainer, toast } from "react-toastify";
+// import { v4 as uuidv4 } from "uuid";
+
+// const uniqueId = uuidv4();
+// console.log(uniqueId);
 
 function App() {
   // loading cart from local storage
@@ -19,6 +23,7 @@ function App() {
 
   // function to add to cart
   function addToCart(userSelection) {
+    const cartId = userSelection.id + userSelection.color + userSelection.size;
     if (!userSelection.size || !userSelection.color) {
       return toast.error("Please select size and color");
     }
@@ -34,7 +39,7 @@ function App() {
       if (existingProductIndex >= 0) {
         updatedCart[existingProductIndex].quantity = userSelection.quantity;
       } else {
-        updatedCart.push({ ...userSelection });
+        updatedCart.push({ ...userSelection, cartId });
       }
 
       toast.success("Product Added to cart");
@@ -65,7 +70,6 @@ function App() {
     0
   );
 
-
   return (
     <MainLayout totalQuantity={totalQuantity}>
       <Routes>
@@ -87,6 +91,7 @@ function App() {
           element={
             <Cart
               cart={cart}
+              setCart={setCart}
               deleteFromCart={deleteFromCart}
               subPrice={subPrice}
             />
