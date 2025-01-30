@@ -5,6 +5,7 @@ import Cart from "./pages/Cart";
 import ProductDetails from "./pages/ProductDetails";
 import { useEffect, useState } from "react";
 import MainLayout from "./layouts/MainLayout";
+import { ToastContainer, toast } from "react-toastify";
 
 function App() {
   // loading cart from local storage
@@ -33,6 +34,7 @@ function App() {
         updatedCart.push({ ...userSelection });
       }
 
+      toast.success("Product Added to cart");
       console.log("Updated Cart:", updatedCart);
       return updatedCart;
     });
@@ -76,6 +78,7 @@ function App() {
           element={<Cart cart={cart} deleteFromCart={deleteFromCart} />}
         />
       </Routes>
+      <ToastContainer position="top-right" autoClose={3000} />
     </MainLayout>
   );
 }
