@@ -77,31 +77,6 @@ const allProducts = [
         rating: 5,
         comment: "Perfect for running and gym workouts!",
       },
-      {
-        user: "Chris Martin",
-        rating: 5,
-        comment: "Perfect for running and gym workouts!",
-      },
-      {
-        user: "Chris Martin",
-        rating: 5,
-        comment: "Perfect for running and gym workouts!",
-      },
-      {
-        user: "Chris Martin",
-        rating: 5,
-        comment: "Perfect for running and gym workouts!",
-      },
-      {
-        user: "Chris Martin",
-        rating: 5,
-        comment: "Perfect for running and gym workouts!",
-      },
-      {
-        user: "Chris Martin",
-        rating: 5,
-        comment: "Perfect for running and gym workouts!",
-      },
     ],
     isFeatured: true,
     isNew: true,
