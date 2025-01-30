@@ -19,6 +19,9 @@ function App() {
 
   // function to add to cart
   function addToCart(userSelection) {
+    if (!userSelection.size || !userSelection.color) {
+      return toast.error("Please select size and color");
+    }
     setCart((prevCartState) => {
       const updatedCart = [...prevCartState];
       const existingProductIndex = prevCartState.findIndex(
