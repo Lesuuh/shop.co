@@ -3,10 +3,48 @@ import { RiDeleteBinFill } from "react-icons/ri";
 import { IoMdCart } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { FiTag } from "react-icons/fi";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
-const Cart = ({ cart, deleteFromCart }) => {
-  console.log("cart:", cart);
+const Cart = ({ cart, deleteFromCart, subPrice }) => {
+  const [userInputpromoCode, setUserInputPromoCode] = useState("");
+  let deliveryFee = 10;
+  let discount = 10;
+  const [total, setTotal] = useState(subPrice + deliveryFee);
+  const [isPromoApplied, setIsPromoApplied] = useState(false);
+  const promoCode = "DISCOUNT10";
 
+  // still having a bug with the discounted price
+
+  const [discountedPrice, setDiscountedPrice] = useState(0);
+
+  useEffect(() => {
+    setTotal(subPrice + deliveryFee);
+    if (isPromoApplied) {
+      setDiscountedPrice(total - total * (discount / 100));
+    } else {
+      setDiscountedPrice(0);
+    }
+  }, [subPrice, deliveryFee, total, isPromoApplied, discount]);
+
+  const handlePromoChangeEvent = (e) => {
+    const userPromoCode = e.target.value;
+    setUserInputPromoCode(userPromoCode);
+  };
+
+  const handlePromoButton = (e) => {
+    e.preventDefault();
+    if (isPromoApplied) {
+      return toast.info("Promo Code already applied");
+    }
+    if (userInputpromoCode !== promoCode) {
+      toast.error("Invalid Promo Code");
+    } else {
+      setTotal((prevTotal) => prevTotal - prevTotal * (discount / 100));
+      toast.success("CONGRATULATIONS, Promo Code Applied");
+      setIsPromoApplied(true);
+    }
+  };
   return (
     <section className="w-full my-5 max-w-[1500px] px-4 md:px-10 lg:px-20">
       <div className="breadcrumbs">
@@ -104,37 +142,45 @@ const Cart = ({ cart, deleteFromCart }) => {
           <div className="border-b pb-2">
             <div className="flex items-center justify-between space-y-3">
               <p className="text-sm font-extralight">Subtotal</p>
-              <p className="font-semibold">$565</p>
+              <p className="font-semibold">${subPrice}</p>
             </div>
             <div className="flex items-center justify-between space-y-3">
-              <p className="text-sm font-extralight">Discount (-20%)</p>
-              <p className="font-semibold text-red-500">-$113</p>
+              <p className="text-sm font-extralight">Discount (-{discount}%)</p>
+              <p className="font-semibold text-red-500">-${discountedPrice}</p>
             </div>
             <div className="flex items-center justify-between space-y-3">
               <p className="text-sm font-extralight">Delivery Fee</p>
-              <p className="font-semibold">$15</p>
+              <p className="font-semibold">${deliveryFee}</p>
             </div>
           </div>
           <div className="flex items-center justify-between mt-5">
             <p className="text-sm font-extralight">Total</p>
-            <p className="font-semibold">$467</p>
+            <p className="font-semibold">${total}</p>
           </div>
           <div className="space-y-4 mt-3">
             <form>
-              <div className="flex gap-4">
-                <div className="relative">
+              <div className="flex gap-4 justify-between">
+                <div className="relative w-full">
                   <input
+                    onChange={handlePromoChangeEvent}
                     type="text"
                     placeholder="Add Promo code"
-                    className="text-xs font-extralight bg-gray-100 py-3 rounded-3xl pl-8 text-gray-600"
+                    disabled={isPromoApplied}
+                    className="w-[100%] min-w-5 text-xs font-extralight bg-gray-100 py-3 rounded-3xl pl-8 pr-5 text-gray-600"
                   />
                   <FiTag
                     className="text-gray-500 absolute top-1/2 left-3 transform -translate-y-[50%]"
                     size={15}
                   />
                 </div>
-                <button className="bg-black text-xs text-white rounded-3xl px-6 py-3 w-full">
-                  Apply
+                <button
+                  onClick={handlePromoButton}
+                  disabled={isPromoApplied}
+                  className={` bg-black text-xs text-white rounded-3xl px-6 py-3 transition ${
+                    isPromoApplied && "bg-gray-400 cursor-not-allowed"
+                  }`}
+                >
+                  {isPromoApplied ? "Applied" : "Apply"}
                 </button>
               </div>
             </form>

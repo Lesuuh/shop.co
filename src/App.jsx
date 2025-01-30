@@ -58,7 +58,13 @@ function App() {
 
   // getting the total quantity in cart
   const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
-  console.log(totalQuantity);
+
+  // getting the total price in cart
+  const subPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
 
   return (
     <MainLayout totalQuantity={totalQuantity}>
@@ -78,7 +84,13 @@ function App() {
         <Route path="/category" />
         <Route
           path="/cart"
-          element={<Cart cart={cart} deleteFromCart={deleteFromCart} />}
+          element={
+            <Cart
+              cart={cart}
+              deleteFromCart={deleteFromCart}
+              subPrice={subPrice}
+            />
+          }
         />
       </Routes>
       <ToastContainer position="top-right" autoClose={3000} />
