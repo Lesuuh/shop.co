@@ -12,7 +12,7 @@ const allProducts = [
     type: "T-shirt",
     images: ["image 7.png", "image 7(2).png", "image 8-1.png"],
     sizes: ["Small", "Medium", "Large", "X-Large"],
-    color: ["blue", "red", "green", "black"],
+    color: ["red", "blue", "green", "yellow"],
     reviews: [
       {
         user: "John Doe",
@@ -41,7 +41,7 @@ const allProducts = [
     type: "pants",
     images: ["image 8-2.png", "image 7-1.png", "image 9-1.png"],
     sizes: ["Small", "Medium", "Large"],
-    color: ["black"],
+    color: ["black", "white", "purple", "pink"],
     reviews: [
       {
         user: "Alice Johnson",
@@ -70,7 +70,7 @@ const allProducts = [
     type: "shorts",
     images: ["image 9-2.png", "image 9.png", "image 8.png"],
     sizes: ["Medium", "Large", "X-Large"],
-    color: ["gray"],
+    color: ["gray", "orange", "cyan", "red"],
     reviews: [
       {
         user: "Chris Martin",
@@ -94,7 +94,7 @@ const allProducts = [
     type: "hoodie",
     images: ["image 8-1.png", "image 7-1.png", "image 10.png"],
     sizes: ["Medium", "Large", "X-Large", "XX-Large"],
-    color: ["navy blue"],
+    color: ["blue", "brown", "green", "purple"],
     reviews: [
       {
         user: "Sarah Johnson",
@@ -118,7 +118,7 @@ const allProducts = [
     type: "jacket",
     images: ["image 9.png", "image 8-2.png", "image 10-1.png"],
     sizes: ["Medium", "Large", "X-Large"],
-    color: ["blue"],
+    color: ["pink", "yellow", "cyan", "black"],
     reviews: [
       {
         user: "David Walker",
@@ -142,7 +142,7 @@ const allProducts = [
     type: "shirt",
     images: ["image 7.png", "image 8.png", "image 9.png"],
     sizes: ["Small", "Medium", "Large", "X-Large"],
-    color: ["white"],
+    color: ["orange", "green", "red", "brown"],
     reviews: [
       {
         user: "Mike Anderson",
@@ -166,7 +166,7 @@ const allProducts = [
     type: "dress",
     images: ["image 10-2.png", "image 8-2.png", "image 9.png"],
     sizes: ["Small", "Medium", "Large"],
-    color: ["yellow"],
+    color: ["white", "cyan", "pink", "blue"],
     reviews: [
       {
         user: "Lisa Brown",
@@ -190,7 +190,7 @@ const allProducts = [
     type: "sweater",
     images: ["image 7.png", "image 7-1.png", "image 8.png"],
     sizes: ["Medium", "Large", "X-Large", "XX-Large"],
-    color: ["gray"],
+    color: ["gray", "red", "purple", "yellow"],
     reviews: [
       {
         user: "Anna Lee",

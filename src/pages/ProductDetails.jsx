@@ -147,46 +147,16 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
                 <div
                   key={uuidv4()}
                   onClick={() => handleColor(color)}
-                  className={`w-8 h-8 rounded-full flex items-center justify-center`}
+                  className={`w-8 h-8 rounded-full border flex items-center justify-center`}
                   style={{ backgroundColor: color }}
                 >
                   {userSelection.color === color ? (
-                    <GoCheck className={`text-white`} />
+                    <GoCheck className={`${color === "white" ? "text-black" : "text-white"}`} />
                   ) : (
                     ""
                   )}
                 </div>
               ))}
-              {/* <div
-                onClick={() => handleColor("black")}
-                className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center"
-              >
-                {userSelection.color === "black" ? (
-                  <GoCheck className={`text-white`} />
-                ) : (
-                  ""
-                )}
-              </div>
-              <div
-                onClick={() => handleColor("gray")}
-                className="w-8 h-8 bg-gray-500 rounded-full ml-2 flex items-center justify-center"
-              >
-                {userSelection.color === "gray" ? (
-                  <GoCheck className="text-white" />
-                ) : (
-                  ""
-                )}
-              </div>
-              <div
-                onClick={() => handleColor("red")}
-                className="w-8 h-8 bg-red-500 rounded-full ml-2 flex items-center justify-center"
-              >
-                {userSelection.color === "red" ? (
-                  <GoCheck className="text-white" />
-                ) : (
-                  ""
-                )}
-              </div> */}
             </div>
           </div>
           {/* buttons */}
