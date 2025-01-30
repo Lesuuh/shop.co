@@ -8,6 +8,7 @@ import StarRatings from "../components/StarRatings";
 import calculateNewPrice from "../components/CalculateNewPrice";
 import { FaCircleCheck } from "react-icons/fa6";
 // import ClipLoader from "react-spinners/ClipLoader";
+import { v4 as uuidv4 } from "uuid";
 
 const ProductDetails = ({ cart, setCart, addToCart }) => {
   console.log(cart);
@@ -141,17 +142,27 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
           </div>
           <div className="my-5 space-y-2 border-b border-black/5 pb-5 ">
             <p className="text-xs font-extralight">Select Colors</p>
-            <div className="flex items-center">
-              <div
+            <div className="flex items-center gap-3">
+              {product.color.map((color) => (
+                <div
+                  key={uuidv4()}
+                  onClick={() => handleColor(color)}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center`}
+                  style={{ backgroundColor: color }}
+                >
+                  {userSelection.color === color ? (
+                    <GoCheck className={`text-white`} />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              ))}
+              {/* <div
                 onClick={() => handleColor("black")}
-                className="w-8 h-8 bg-black rounded-full flex items-center justify-center"
+                className="w-8 h-8 bg-black text-white rounded-full flex items-center justify-center"
               >
-                {cart.color === "black" ? (
-                  <GoCheck
-                    className={`${
-                      userSelection.color === "black" ? "text-white" : ""
-                    }`}
-                  />
+                {userSelection.color === "black" ? (
+                  <GoCheck className={`text-white`} />
                 ) : (
                   ""
                 )}
@@ -160,14 +171,22 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
                 onClick={() => handleColor("gray")}
                 className="w-8 h-8 bg-gray-500 rounded-full ml-2 flex items-center justify-center"
               >
-                {userSelection.color === "gray" ? <GoCheck /> : ""}
+                {userSelection.color === "gray" ? (
+                  <GoCheck className="text-white" />
+                ) : (
+                  ""
+                )}
               </div>
               <div
                 onClick={() => handleColor("red")}
                 className="w-8 h-8 bg-red-500 rounded-full ml-2 flex items-center justify-center"
               >
-                {userSelection.color === "red" ? <GoCheck /> : ""}
-              </div>
+                {userSelection.color === "red" ? (
+                  <GoCheck className="text-white" />
+                ) : (
+                  ""
+                )}
+              </div> */}
             </div>
           </div>
           {/* buttons */}
