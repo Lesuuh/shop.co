@@ -6,10 +6,7 @@ import ProductDetails from "./pages/ProductDetails";
 import { useEffect, useState } from "react";
 import MainLayout from "./layouts/MainLayout";
 import { ToastContainer, toast } from "react-toastify";
-// import { v4 as uuidv4 } from "uuid";
-
-// const uniqueId = uuidv4();
-// console.log(uniqueId);
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   // loading cart from local storage
@@ -56,8 +53,6 @@ function App() {
         item.size !== cartItem.size ||
         item.color !== cartItem.color
     );
-    console.log(newCart);
-    console.log("Deleting Item:", cartItem);
     setCart(newCart);
   }
 
@@ -97,6 +92,7 @@ function App() {
             />
           }
         />
+        <Route path="/search" element={<SearchPage />} />
       </Routes>
       <ToastContainer position="top-right" autoClose={3000} />
     </MainLayout>
