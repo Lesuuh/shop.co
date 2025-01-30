@@ -18,6 +18,7 @@ const Cart = ({ cart, setCart, deleteFromCart, subPrice }) => {
 
   useEffect(() => {
     let discountAmount = 0;
+    setTotal(subPrice + deliveryFee);
     if (isPromoApplied) {
       discountAmount = subPrice * (discountPercentage / 100);
       setDiscountedPrice(discountAmount);
@@ -59,17 +60,20 @@ const Cart = ({ cart, setCart, deleteFromCart, subPrice }) => {
     );
   };
 
-  const handleCartQuantityDecrement = (cartId) => {
-    setCart((prevCartState) =>
-      prevCartState.map((item) =>
-        item.cartId === cartId
-          ? {
-              ...item,
-              quantity: item.quantity - 1,
-            }
-          : item
-      )
-    );
+  const handleCartQuantityDecrement = (cartItem) => {
+    const { cartId, quantity } = cartItem;
+    if (quantity >= 2) {
+      setCart((prevCartState) =>
+        prevCartState.map((item) =>
+          item.cartId === cartId
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
+            : item
+        )
+      );
+    }
   };
   useEffect(() => {
     console.log(cart);
@@ -152,9 +156,7 @@ const Cart = ({ cart, setCart, deleteFromCart, subPrice }) => {
                       </h3>
                       <div className="flex items-center ml-auto">
                         <button
-                          onClick={() =>
-                            handleCartQuantityDecrement(cartItem.cartId)
-                          }
+                          onClick={() => handleCartQuantityDecrement(cartItem)}
                           className="rounded-l-2xl bg-gray-100 text-xl px-3 md:px-4 md:py-1"
                         >
                           -
