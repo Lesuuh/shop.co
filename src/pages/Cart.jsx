@@ -9,23 +9,22 @@ import { toast } from "react-toastify";
 const Cart = ({ cart, deleteFromCart, subPrice }) => {
   const [userInputpromoCode, setUserInputPromoCode] = useState("");
   let deliveryFee = 10;
-  let discount = 10;
+  let discountPercentage = 10;
+  const promoCode = "DISCOUNT10";
   const [total, setTotal] = useState(subPrice + deliveryFee);
   const [isPromoApplied, setIsPromoApplied] = useState(false);
-  const promoCode = "DISCOUNT10";
+  const [discountedPrice, setDiscountedPrice] = useState(0);
 
   // still having a bug with the discounted price
 
-  const [discountedPrice, setDiscountedPrice] = useState(0);
-
   useEffect(() => {
-    setTotal(subPrice + deliveryFee);
+    let discountAmount = 0;
     if (isPromoApplied) {
-      setDiscountedPrice(total - total * (discount / 100));
-    } else {
-      setDiscountedPrice(0);
+      discountAmount = subPrice * (discountPercentage / 100);
+      setDiscountedPrice(discountAmount);
+      setTotal(subPrice - discountAmount + deliveryFee);
     }
-  }, [subPrice, deliveryFee, total, isPromoApplied, discount]);
+  }, [subPrice, deliveryFee, discountPercentage, isPromoApplied]);
 
   const handlePromoChangeEvent = (e) => {
     const userPromoCode = e.target.value;
@@ -40,7 +39,9 @@ const Cart = ({ cart, deleteFromCart, subPrice }) => {
     if (userInputpromoCode !== promoCode) {
       toast.error("Invalid Promo Code");
     } else {
-      setTotal((prevTotal) => prevTotal - prevTotal * (discount / 100));
+      setTotal(
+        (prevTotal) => prevTotal - prevTotal * (discountPercentage / 100)
+      );
       toast.success("CONGRATULATIONS, Promo Code Applied");
       setIsPromoApplied(true);
     }
@@ -142,20 +143,24 @@ const Cart = ({ cart, deleteFromCart, subPrice }) => {
           <div className="border-b pb-2">
             <div className="flex items-center justify-between space-y-3">
               <p className="text-sm font-extralight">Subtotal</p>
-              <p className="font-semibold">${subPrice}</p>
+              <p className="font-semibold">${subPrice.toFixed(2)}</p>
             </div>
             <div className="flex items-center justify-between space-y-3">
-              <p className="text-sm font-extralight">Discount (-{discount}%)</p>
-              <p className="font-semibold text-red-500">-${discountedPrice}</p>
+              <p className="text-sm font-extralight">
+                Discount (-{discountPercentage}%)
+              </p>
+              <p className="font-semibold text-red-500">
+                -${discountedPrice.toFixed(2)}
+              </p>
             </div>
             <div className="flex items-center justify-between space-y-3">
               <p className="text-sm font-extralight">Delivery Fee</p>
-              <p className="font-semibold">${deliveryFee}</p>
+              <p className="font-semibold">${deliveryFee.toFixed(2)}</p>
             </div>
           </div>
           <div className="flex items-center justify-between mt-5">
             <p className="text-sm font-extralight">Total</p>
-            <p className="font-semibold">${total}</p>
+            <p className="font-semibold">${total.toFixed(2)}</p>
           </div>
           <div className="space-y-4 mt-3">
             <form>
