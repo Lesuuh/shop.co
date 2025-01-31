@@ -7,8 +7,19 @@ import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+// custom hook
+import useSearchFilter from "../hooks/useSearchFilter";
+
 const Header = ({ totalQuantity }) => {
   const [menu, setMenu] = useState(false);
+  const {
+    filteredSearch,
+    handleKeyDown,
+    handleSearchChange,
+    handleSearchSubmit,
+  } = useSearchFilter();
+
+  console.log(filteredSearch);
 
   return (
     // mobile view
@@ -38,9 +49,11 @@ const Header = ({ totalQuantity }) => {
           <li className="font-light text-sm">Brands</li>
         </ul>
 
-        <form className="relative hidden md:flex">
+        <form onSubmit={handleSearchSubmit} className="relative hidden md:flex">
           <input
             type="text"
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyDown}
             placeholder="Search your clothes..."
             className="border rounded-lg focus:outline-slate-800 focus:outline-0 py-1.5 w-full md:w-[15rem] lg:w-[20rem] xl:w-[35rem]  min-w-[5rem] pl-7 text-sm"
           />
@@ -48,9 +61,9 @@ const Header = ({ totalQuantity }) => {
         </form>
 
         <div className="flex items-center space-x-3 ">
-          <Link to="/search">
+          <NavLink to="/search">
             <CiSearch className="md:hidden font-semibold " size={20} />
-          </Link>
+          </NavLink>
           <NavLink to="/cart" className="relative">
             <IoCartOutline size={20} />
             {totalQuantity > 0 && (
