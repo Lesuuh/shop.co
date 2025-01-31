@@ -1,10 +1,13 @@
-import ProductCard from "./ProductCard";
-
-import db from "../../../database";
-
-const featuredProducts = db.filter((products) => products.isFeatured === true);
+import ProductCard from "../ProductCard";
+import { useGlobalContext } from "../../contexts/GlobalContext";
 
 const TopSelling = () => {
+  const allProducts = useGlobalContext();
+  const products = allProducts.products;
+  const featuredProducts = products.filter(
+    (products) => products.isFeatured === true
+  );
+
   return (
     <section className="w-full max-w-[1500px] mx-auto px-4 md:px-10 lg:px-20 mt-8">
       <h2 className="text-center font-black text-2xl mb-2">TOP SELLINGS</h2>

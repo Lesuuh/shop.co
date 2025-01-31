@@ -9,8 +9,6 @@ const useSearchFilter = () => {
     setSearchQuery(e.target.value);
   };
 
-  console.log(searchQuery);
-
   //   using the query to filter the products
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -20,7 +18,6 @@ const useSearchFilter = () => {
     setFilteredProducts(filteredSearch);
   };
 
-  console.log(filteredProducts);
   // on pressing enter key
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {

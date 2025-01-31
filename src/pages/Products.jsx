@@ -1,5 +1,5 @@
 import db from "../../database";
-import ProductCard from "../components/ui/ProductCard";
+import ProductCard from "../components/ProductCard";
 
 const products = db;
 

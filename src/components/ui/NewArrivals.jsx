@@ -1,9 +1,10 @@
-import ProductCard from "./ProductCard";
-import db from "../../../database";
-
-const newArrivals = db.filter((product)=> product.isNew === true);
+import ProductCard from "../ProductCard";
+import { useGlobalContext } from "../../contexts/GlobalContext";
 
 const NewArrivals = () => {
+  const allProducts = useGlobalContext();
+  const products = allProducts.products
+  const newArrivals = products.filter((product) => product.isNew === true);
   return (
     <section className="w-full max-w-[1500px] mx-auto px-4 md:px-10 lg:px-20 mt-8">
       <h2 className="text-center font-black text-2xl mb-2">NEW ARRIVALS</h2>

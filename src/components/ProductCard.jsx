@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 // import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import StarRatings from "../StarRatings";
-import calculateNewPrice from "../CalculateNewPrice";
+import StarRatings from "./StarRatings";
+import calculateNewPrice from "./CalculateNewPrice";
 
 const ProductCard = ({ item }) => {
   // console.log(item.id);

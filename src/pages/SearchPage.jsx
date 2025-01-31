@@ -1,8 +1,7 @@
 import { CiSearch } from "react-icons/ci";
 import { useSearchContext } from "../contexts/SearchContext";
 import { useLocation } from "react-router-dom";
-import ProductCard from "../components/ui/ProductCard";
-// import { useEffect } from "react";
+import ProductCard from "../components/ProductCard";
 
 const SearchPage = () => {
   const {

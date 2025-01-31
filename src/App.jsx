@@ -7,11 +7,11 @@ import { useEffect, useState } from "react";
 import MainLayout from "./layouts/MainLayout";
 import { ToastContainer, toast } from "react-toastify";
 import SearchPage from "./pages/SearchPage";
-import { useSearchContext } from "./contexts/SearchContext";
+
 
 function App() {
-  const { filteredProducts } = useSearchContext();
-  console.log(filteredProducts);
+  
+ 
   // loading cart from local storage
   const savedCart = JSON.parse(localStorage.getItem("cart"));
   const [cart, setCart] = useState(savedCart || []);
