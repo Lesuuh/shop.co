@@ -3,30 +3,33 @@ import products from "../../database";
 
 const useSearchFilter = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredSearch, setFilteredSearch] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
   console.log(searchQuery);
+
   //   using the query to filter the products
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-
     const filteredSearch = products.filter((product) =>
       product.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    setFilteredSearch(filteredSearch);
-    console.log(filteredSearch);
+    setFilteredProducts(filteredSearch);
   };
+
+  console.log(filteredProducts);
+  // on pressing enter key
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSearchSubmit(e);
     }
   };
+
   return {
-    filteredSearch,
+    filteredProducts,
     handleKeyDown,
     handleSearchChange,
     handleSearchSubmit,

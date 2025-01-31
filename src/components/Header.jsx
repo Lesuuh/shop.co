@@ -5,21 +5,31 @@ import { VscAccount } from "react-icons/vsc";
 import { IoCartOutline } from "react-icons/io5";
 import { IoIosArrowDown, IoMdClose } from "react-icons/io";
 import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 // custom hook
-import useSearchFilter from "../hooks/useSearchFilter";
+
+import { useSearchContext } from "../contexts/SearchContext";
 
 const Header = ({ totalQuantity }) => {
   const [menu, setMenu] = useState(false);
-  const {
-    filteredSearch,
-    handleKeyDown,
-    handleSearchChange,
-    handleSearchSubmit,
-  } = useSearchFilter();
+  const navigate = useNavigate();
 
-  console.log(filteredSearch);
+  // context
+  const { searchQuery, handleSearchChange, handleSearchSubmit } =
+    useSearchContext();
+
+  const handleSearchSubmitLocal = (e) => {
+    // e.preventDefault();
+    handleSearchSubmit(e);
+    navigate("/search");
+  };
+
+  const handleKeyDownLocal = (e) => {
+    if (e.key === "Enter") {
+      handleSearchSubmitLocal(e);
+    }
+  };
 
   return (
     // mobile view
@@ -49,15 +59,21 @@ const Header = ({ totalQuantity }) => {
           <li className="font-light text-sm">Brands</li>
         </ul>
 
-        <form onSubmit={handleSearchSubmit} className="relative hidden md:flex">
+        <form
+          onSubmit={handleSearchSubmitLocal}
+          className="relative hidden md:flex"
+        >
           <input
             type="text"
             onChange={handleSearchChange}
-            onKeyDown={handleKeyDown}
+            value={searchQuery}
+            onKeyDown={handleKeyDownLocal}
             placeholder="Search your clothes..."
             className="border rounded-lg focus:outline-slate-800 focus:outline-0 py-1.5 w-full md:w-[15rem] lg:w-[20rem] xl:w-[35rem]  min-w-[5rem] pl-7 text-sm"
           />
-          <CiSearch className="absolute top-1/2 transform -translate-y-1/2 left-2 cursor-pointer " />
+          <button type="submit">
+            <CiSearch className="absolute top-1/2 transform -translate-y-1/2 left-2 cursor-pointer " />
+          </button>
         </form>
 
         <div className="flex items-center space-x-3 ">
