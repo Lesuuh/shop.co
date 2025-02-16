@@ -7,11 +7,9 @@ import { useEffect, useState } from "react";
 import MainLayout from "./layouts/MainLayout";
 import { ToastContainer, toast } from "react-toastify";
 import SearchPage from "./pages/SearchPage";
-
+import CheckoutPage from "./pages/CheckoutPage";
 
 function App() {
-  
- 
   // loading cart from local storage
   const savedCart = JSON.parse(localStorage.getItem("cart"));
   const [cart, setCart] = useState(savedCart || []);
@@ -96,6 +94,7 @@ function App() {
           }
         />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
       <ToastContainer position="top-right" autoClose={3000} />
     </MainLayout>

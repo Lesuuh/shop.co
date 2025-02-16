@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { RiDeleteBinFill } from "react-icons/ri";
 import { IoMdCart } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiTag } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -82,6 +82,13 @@ const Cart = ({ cart, setCart, deleteFromCart, subPrice }) => {
   const handlePrice = (price, quantity) => {
     const subItemPrice = price * quantity;
     return subItemPrice;
+  };
+
+  const navigate = useNavigate();
+  const goToCheckout = () => {
+    if (cart.length !== 0) {
+      navigate("/checkout");
+    }
   };
 
   return (
@@ -237,7 +244,10 @@ const Cart = ({ cart, setCart, deleteFromCart, subPrice }) => {
                 </button>
               </div>
             </form>
-            <button className="w-full cursor-pointer bg-black text-white text-xs font-light rounded-3xl py-3">
+            <button
+              onClick={() => goToCheckout()}
+              className="w-full cursor-pointer bg-black text-white text-xs font-light rounded-3xl py-3"
+            >
               Go to Checkout
             </button>
           </div>
