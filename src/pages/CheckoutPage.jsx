@@ -1,8 +1,11 @@
 // import { useState } from "react";
 import { useState } from "react";
 import { PaystackButton } from "react-paystack";
+import { useCartContext } from "../contexts/CartContext";
 
 function CheckoutPage() {
+  const { total } = useCartContext();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -17,10 +20,10 @@ function CheckoutPage() {
   };
 
   const publicKey = "pk_test_cb1de4a7b591c47611ada824df5ccc7f7649ff32";
-  const totalAmount = 50000;
+  // const totalAmount = 50000;
   const paystackConfig = {
     email: formData.email,
-    amount: totalAmount, // Paystack works with kobo (NGN 5000 = 500000 kobo)
+    amount: total * 100, // Paystack works with kobo (NGN 5000 = 500000 kobo)
     publicKey,
     currency: "NGN",
     onSuccess: (response) => {
@@ -34,8 +37,8 @@ function CheckoutPage() {
 
   return (
     <div className="px-4 md:px-10 lg:px-20 w-full mx-auto max-w-[1500px] my-5">
-      <h2>Checkout</h2>
-      <form className="flex flex-col space-y-4 my-4 items-center  justify-center w-full">
+      <h2 className="text-center text-2xl font-semibold">Checkout</h2>
+      <form className="flex flex-col space-y-4 my-4 items-center w-full">
         <input
           name="name"
           placeholder="Full Name"
@@ -59,6 +62,13 @@ function CheckoutPage() {
           className="border border-slate-200 py-1 px-2 w-full max-w-[400px]"
         />
         <input
+          name="nearest_landmark"
+          placeholder="Nearest Landmark"
+          onChange={handleChange}
+          required
+          className="border border-slate-200 py-1 px-2 w-full max-w-[400px]"
+        />
+        <input
           name="city"
           placeholder="City"
           onChange={handleChange}
@@ -73,18 +83,19 @@ function CheckoutPage() {
           className="border border-slate-200 py-1 px-2 w-full max-w-[400px]"
         />
 
-        <select
+        {/* <select
           name="paymentMethod"
           onChange={handleChange}
           className="border border-slate-200 py-1 px-2 w-full max-w-[400px]"
         >
           <option value="card">Credit/Debit Card</option>
           <option value="bank_transfer">Bank Transfer</option>
-        </select>
+        </select> */}
+        <p className="text-left">Total: {total.toFixed(2)}</p>
 
         <PaystackButton
           {...paystackConfig}
-          className="bg-slate-900 text-white py-2 px-6  "
+          className="bg-slate-900 text-white py-2 px-6  rounded-sm"
           text="Pay Now"
         />
       </form>

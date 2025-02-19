@@ -1,95 +1,29 @@
 /* eslint-disable react/prop-types */
 import { RiDeleteBinFill } from "react-icons/ri";
 import { IoMdCart } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiTag } from "react-icons/fi";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+// import { useEffect, useState } from "react";
+// import { toast } from "react-toastify";
+import { useCartContext } from "../contexts/CartContext";
 
-const Cart = ({ cart, setCart, deleteFromCart, subPrice }) => {
-  console.log(cart);
-  const [userInputpromoCode, setUserInputPromoCode] = useState("");
-  let deliveryFee = 10;
-  let discountPercentage = 10;
-  const promoCode = "DISCOUNT10";
-  const [total, setTotal] = useState(subPrice + deliveryFee);
-  const [isPromoApplied, setIsPromoApplied] = useState(false);
-  const [discountedPrice, setDiscountedPrice] = useState(0);
-
-  useEffect(() => {
-    let discountAmount = 0;
-    setTotal(subPrice + deliveryFee);
-    if (isPromoApplied) {
-      discountAmount = subPrice * (discountPercentage / 100);
-      setDiscountedPrice(discountAmount);
-      setTotal(subPrice - discountAmount + deliveryFee);
-    }
-  }, [subPrice, deliveryFee, discountPercentage, isPromoApplied]);
-
-  const handlePromoChangeEvent = (e) => {
-    const userPromoCode = e.target.value;
-    setUserInputPromoCode(userPromoCode);
-  };
-  const handlePromoButton = (e) => {
-    e.preventDefault();
-    if (isPromoApplied) {
-      return toast.info("Promo Code already applied");
-    }
-    if (userInputpromoCode !== promoCode) {
-      toast.error("Invalid Promo Code");
-    } else {
-      setTotal(
-        (prevTotal) => prevTotal - prevTotal * (discountPercentage / 100)
-      );
-      toast.success("CONGRATULATIONS, Promo Code Applied");
-      setIsPromoApplied(true);
-    }
-  };
-
-  // handle increment or decrement in cart
-  const handleCartQuantityIncrement = (cartId) => {
-    setCart((prevCartState) =>
-      prevCartState.map((item) =>
-        item.cartId === cartId
-          ? {
-              ...item,
-              quantity: item.quantity + 1,
-            }
-          : item
-      )
-    );
-  };
-
-  const handleCartQuantityDecrement = (cartItem) => {
-    const { cartId, quantity } = cartItem;
-    if (quantity >= 2) {
-      setCart((prevCartState) =>
-        prevCartState.map((item) =>
-          item.cartId === cartId
-            ? {
-                ...item,
-                quantity: item.quantity - 1,
-              }
-            : item
-        )
-      );
-    }
-  };
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
-  const handlePrice = (price, quantity) => {
-    const subItemPrice = price * quantity;
-    return subItemPrice;
-  };
-
-  const navigate = useNavigate();
-  const goToCheckout = () => {
-    if (cart.length !== 0) {
-      navigate("/checkout");
-    }
-  };
+const Cart = () => {
+  const {
+    cart,
+    deleteFromCart,
+    subPrice,
+    handlePrice,
+    handleCartQuantityDecrement,
+    handleCartQuantityIncrement,
+    handlePromoChangeEvent,
+    handlePromoButton,
+    goToCheckout,
+    discountPercentage,
+    isPromoApplied,
+    discountedPrice,
+    deliveryFee,
+    total,
+  } = useCartContext();
 
   return (
     <section className="w-full my-5 max-w-[1500px] px-4 md:px-10 lg:px-20">
