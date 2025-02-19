@@ -20,10 +20,10 @@ function CheckoutPage() {
   };
 
   const publicKey = "pk_test_cb1de4a7b591c47611ada824df5ccc7f7649ff32";
-  // const totalAmount = 50000;
+
   const paystackConfig = {
     email: formData.email,
-    amount: total * 100, // Paystack works with kobo (NGN 5000 = 500000 kobo)
+    amount: total * 100,
     publicKey,
     currency: "NGN",
     onSuccess: (response) => {
