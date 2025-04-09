@@ -4,7 +4,7 @@ import Newsletters from "./Newsletters";
 
 const Footer = () => {
   return (
-    <section className="w-full md:pt-20 relative">
+    <section className="w-full max-w-[1500px] mx-auto md:pt-20 relative">
       <Newsletters />
       <div className="bg-[#e8e8e8] py-5 mt-5 md:pt-28 lg:pt-24 px-4 md:px-10 lg:px-20 ">
         <div className="md:flex md:gap-10 ">
@@ -89,11 +89,11 @@ const Footer = () => {
             Shop.co 2000-2025. All Rights Reserved
           </p>
           <div className="flex items-center justify-center gap-5">
-            <FaCcVisa size={30}/>
-            <FaCcPaypal size={30}/>
-            <FaCcVisa size={30}/>
-            <FaCcPaypal size={30}/>
-            <FaCcVisa size={30}/>
+            <FaCcVisa size={30} />
+            <FaCcPaypal size={30} />
+            <FaCcVisa size={30} />
+            <FaCcPaypal size={30} />
+            <FaCcVisa size={30} />
           </div>
         </div>
       </div>

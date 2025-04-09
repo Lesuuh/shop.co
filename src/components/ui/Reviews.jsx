@@ -57,7 +57,7 @@ const reviews = [
 const Reviews = () => {
   const splideRef = useRef();
   return (
-    <section className="w-full px-4 md:px-10 lg:px-20 my-10 ">
+    <section className="w-full max-w-[1500px] mx-auto px-4 md:px-10 lg:px-20 my-10 ">
       <h2 className="text-3xl md:text-3xl font-black">OUR HAPPY CUSTOMERS</h2>
       <div className="py-5 relative">
         <div className="flex items-center justify-end pb-2">

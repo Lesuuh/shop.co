@@ -5,7 +5,7 @@ import image4 from "../../assets/image 14.png";
 
 const DressStyle = () => {
   return (
-    <section className="w-full max-w-[1500px] px-4 mt-10 md:px-10 lg:px-20">
+    <section className="w-full max-w-[1500px] mx-auto px-4 mt-10 md:px-10 lg:px-20">
       <div className="bg-[#e8e8e8] px-4 md:px-10 lg:px-20 py-10 rounded-lg">
         <h2 className="font-black text-3xl text-center py-4">
           BROWSE BY DRESS STYLE
