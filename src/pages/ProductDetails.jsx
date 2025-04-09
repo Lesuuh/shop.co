@@ -83,7 +83,7 @@ const ProductDetails = ({ cart, setCart, addToCart }) => {
   }
 
   return (
-    <section className="w-full my-5 max-w-[1500px] px-4 md:px-10 lg:px-20">
+    <section className="w-full my-5 max-w-[1500px] mx-auto px-4 md:px-10 lg:px-20">
       <div className="breadcrumbs">
         <p className="text-sm font-thin">
           Home {">"} Shop {">"} Men {">"}{" "}

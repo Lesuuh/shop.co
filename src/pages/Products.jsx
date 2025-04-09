@@ -5,7 +5,7 @@ const products = db;
 
 const Products = () => {
   return (
-    <section className="w-full my-5 max-w-[1500px] px-4 md:px-10 lg:px-20">
+    <section className="w-full my-5 max-w-[1500px] mx-auto px-4 md:px-10 lg:px-20">
       <h2 className="text-center font-black text-2xl md:text-3xl">
         All Products
       </h2>

@@ -18,7 +18,7 @@ const SearchPage = () => {
   console.log(queryParams);
 
   return (
-    <section className="w-full my-5 max-w-[1500px] px-4 md:px-10 lg:px-20 mx-auto ">
+    <section className="w-full my-5 max-w-[1500px] mx-auto px-4 md:px-10 lg:px-20 mx-auto ">
       <form onSubmit={handleSearchSubmit} className="md:hidden">
         <div className="relative">
           <input

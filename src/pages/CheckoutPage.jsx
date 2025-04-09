@@ -19,7 +19,7 @@ function CheckoutPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const publicKey = "pk_test_cb1de4a7b591c47611ada824df5ccc7f7649ff32";
+  const publicKey = import.meta.env.VITE_PAYSTACK_PUBLIC_KEY;
 
   const paystackConfig = {
     email: formData.email,
