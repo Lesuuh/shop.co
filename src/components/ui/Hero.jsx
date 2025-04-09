@@ -4,7 +4,7 @@ import vectorStar from "../../assets/Vector.png";
 
 const Hero = () => {
   return (
-    <section className="w-full max-w-[100vw] bg-[#f2f0f1]">
+    <section className="w-full  max-w-[1500px] px-4 md:px-10 lg:px-20 mt-8 mx-auto bg-[#f2f0f1]">
       <div className="md:flex items-center px-4 md:px-10 lg:px-20 justify-between">
         <div className="w-full lg:md:w-[600px]">
           <h2 className="font-black text-4xl pt-6 leading-8 md:text-5xl">
